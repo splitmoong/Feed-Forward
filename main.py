@@ -1,4 +1,5 @@
 import numpy as np
+import numpy.random
 
 
 class FeedForward:
@@ -10,13 +11,15 @@ class FeedForward:
         self.start_matrix = np.random.rand(self.input, self.layers[0])
         self.end_matrix = np.random.rand(self.layers[-1], self.output)
 
+        self.hidden_layers = []
+
         if len(self.layers) > 1:
-            for layer in range(0, len(self.layers)):
-                temp = "hidden_matrix_" + str(layer)
+            for i in range(0, len(self.layers) - 1):
+                self.hidden_layers.append(numpy.random.rand(self.layers[i], self.layers[i + 1]))
 
-
-
-
+    def train(self, X, y, epoch:int):
+        pass
 
 
 ff1 = FeedForward(784, [20, 20], 10)
+print(ff1.hidden_layers)
